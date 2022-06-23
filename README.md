@@ -1,4 +1,4 @@
-# BC05-02-Work-Day-Planner
+# BC05-02-
 A day planner to show you where you are in your day's progress
 
 ## Description
@@ -36,8 +36,6 @@ Bootstrap
 JQuery
 
 Sounds sourced from https://freesound.org/.
-Wrong answer - https://freesound.org/people/Jacco18/sounds/419023/#
-Correct answer - https://freesound.org/people/LittleRainySeasons/sounds/335908/
 
 
 ## License
