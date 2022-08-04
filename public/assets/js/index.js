@@ -40,6 +40,11 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
+  })
+  .then()
+  .catch((err)=>{
+    console.log('POST notes error:');
+    console.log(err)
   });
 
 const deleteNote = (id) =>

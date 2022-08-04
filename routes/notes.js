@@ -11,9 +11,6 @@ notes.get('/', (req, res) => {
     })
 
 
-    /*  res.send(`[{ "title":"Test Title","text":"Test text" },
-            { "title":"Test Title2","text":"Test text2"}]`) */
-
 });
 
 //I think this is handled INSIDE the html/js for the file and doesn't need api call
@@ -37,12 +34,55 @@ let noteId = req.params.notes_id ;
 */
 
 notes.post('/', (req, res) => {
-
     const notesBody = req.body;
-    console.log('Save Note')
-
-    // push note into note file
+    const response = {}
+    /*  //console.log('Save Note');
+      //console.log(notesBody);
+      // push note into note file */
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) { 
+            console.log(err)
+            res.json('Error in reading file')
+        }
+        else {
+            //console.log(data);
+            let theNotes = JSON.parse(data);
+            theNotes.push(notesBody);
+            fs.writeFile('./db/db.json', JSON.stringify(theNotes), (err) => {
+                if (err) {
+                    console.log(err)
+                    res.json('Error in posting feedback')
+                }
+                else {
+                    console.log('Notes updated');
+                    res.json(theNotes) ;
+                    /*
+                    res.json = {
+                        status: 'success',
+                        body: theNotes ,
+                    }
+                    */
+                }
+            }
+            )
+
+        }
+})
+   // next()
+
+});
+
+notes.delete('/:notes_id', (req, res) => {
+    noteID = req.params.notes_id;
+
+    //use noteID to splice out object from array in Notes file 
+    console.log('DeleteNote')
+});
+
+module.exports = notes;
+
+
+/*    fs.readFile('./db/db.json', 'utf8', (err, data) => {
         //let x=[];
         if (err) { console.log(err) }
         else {  (JSON.parse(data)) }
@@ -57,36 +97,4 @@ notes.post('/', (req, res) => {
                 else { console.log('Notes updated') }
             })
         })
-
-
-
-});
-
-notes.delete('/:notes_id', (req, res) => {
-    noteID = req.params.notes_id;
-
-    //use noteID to splice out object from array in Notes file 
-    console.log('DeleteNote')
-});
-
-module.exports = notes;
-
-
-/*    let parsedData =[];
-    //console.log(fs.readFile('./db/db.json', (err) => { console.log(err) }))
-  res =  fs.readFile('./db/db.json', 'utf8', (err, data) => {
-        if (err) { console.log(err) }
-        else {
-             parsedData =  JSON.parse(data);
-            //console.log(parsedData)
-
-            return  parsedData;
-
-            // return parsedData
-            //return data
-        }
-    });
-  //  console.log(parsedData)
-//res = parsedData
 */
-   //  res= fs.readFile('./db/db.json','utf8', (err,data) => { console.log(err) }).then((data) => res.json(JSON.parse(data)));
