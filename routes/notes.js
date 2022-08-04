@@ -1,33 +1,47 @@
 const notes = require('express').Router();
 const fs = require('fs')
 
-notes.get( '/', (req, res) => {
-    
-    // res = fs.readFile('./db/db.json', 'utf8', (err, data) => {
-    //     if (err) { console.log(err) }
-    //     else { return JSON.parse(data) }
-    // })
-//}
+notes.get('/', (req, res) => {
 
-const read = (path, type) => new Promise((resolve, reject) => {
-    fs.readFile(path, type, (err, data) => {
-      if (err) reject(err)
-      resolve(data)
-    })
-  })
+    // get notes from note file
   
-  //example how call this function
-  let x = read('./db/db.json', 'utf8')
-      .then((data) =>  data ) //console.log('your file is '+data))
-      .catch((err) => console.log('error reading file '+err))
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) { console.log(err) }
+        else { res.send( JSON.parse(data) )}
+    })
 
-return x
+   
+/*
+      res.send(`[
+        {
+            "title":"Test Title",
+            "text":"Test text"
+        },
+        {
+            "title":"Test Title2",
+            "text":"Test text2"
+        }
+    ]`)
+*/
+    console.log(`Get Notes ${res}`)
 
 });
 
+notes.post('/', (req, res) => {
 
+    const notesBody = req.body;
+    console.log('Save Note')
 
+   // push note into note file
 
+});
+
+notes.delete('/:notes_id', (req, res) => {
+    noteID = req.params.notes_id;
+
+    //use noteID to splice out object from array in Notes file 
+console.log('DeleteNote')
+});
 
 module.exports = notes;
 

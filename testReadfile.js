@@ -1,6 +1,6 @@
 const fs = require('fs');
 
- function x() {
+ function  x() {
 
     const read = (path, type) => new Promise((resolve, reject) => {
         fs.readFile(path, type, (err, data) => {
@@ -10,11 +10,10 @@ const fs = require('fs');
       })
       
       //example how call this function
-     let y = read('./db/db.json', 'utf8')
+     let y =  read('./db/db.json', 'utf8')
           .then((data) =>  data ) //console.log('your file is '+data))
           .catch((err) => console.log('error reading file '+err))
-    
-console.log(y)
+
 
 
     // fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -33,4 +32,4 @@ console.log(y)
 // }'this result:' +
 
 
-console.log(x())
+console.log( x())
