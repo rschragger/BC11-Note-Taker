@@ -42,6 +42,23 @@ notes.post('/', (req, res) => {
     console.log('Save Note')
 
     // push note into note file
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        //let x=[];
+        if (err) { console.log(err) }
+        else {  (JSON.parse(data)) }
+    })
+        .then((jsonData) => {
+            console.log('jsonData: ' + json.stringify(jsonData));
+            jsonData.push(notesBody)
+        })
+        .then((finalJson) => {
+            fs.writeFile('./db/db.json', json.stringify(finalJson), (err) => {
+                if (err) { console.log(err) }
+                else { console.log('Notes updated') }
+            })
+        })
+
+
 
 });
 
