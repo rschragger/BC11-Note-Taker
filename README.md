@@ -9,7 +9,7 @@
 
   Github project at [https://github.com/rschragger/BC11-Note-Taker](https://github.com/rschragger/BC11-Note-Taker)
   
-  Deployed to [https://bc11-note-taker.herokuapp.com/notes](https://bc11-note-taker.herokuapp.com/notes)
+  Deployed to [https://bc11-note-taker.herokuapp.com](https://bc11-note-taker.herokuapp.com)
   
   ## Table of Contents
   
